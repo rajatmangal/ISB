@@ -17,8 +17,24 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="#">Hi, {{ request.user.username }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+        {% endif %}
+        {% if not request.user.is_authenticated %}
+            <a class="nav-item nav-link" href="{% url 'login' %}">Sign In</a>
+            <span class="nav-item nav-link">/</span>
+            <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
+        {% endif %}
+    </ul>
+
+
+
     </form>
   </div>
 </nav>

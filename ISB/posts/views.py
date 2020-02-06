@@ -8,7 +8,7 @@ from .forms import CreateUserForm
 from .decorators import unauthenticated_user
 
 
-#@unauthenticated_user
+@unauthenticated_user
 def registerPage(request):
     form = CreateUserForm()
     if request.method == 'POST':
@@ -23,10 +23,10 @@ def registerPage(request):
     return render(request, 'posts/register.html', context)
 
 
-#@unauthenticated_user
+@unauthenticated_user
 def loginPage(request):
     if request.method == 'POST':
-        username = request.POST.get('username') ##getting from names in login page
+        username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username = username, password=password)
         if user is not None:
@@ -43,13 +43,13 @@ def logoutUser(request):
     return redirect('login')
 
 
-#@login_required(login_url='login')
+@login_required(login_url='login')
 def home(request):
     context = {}
     return render(request, 'posts/dashboard.html', context)
 
 
-#@login_required(login_url='login')
+@login_required(login_url='login')
 def userPage(request):
     context={}
     return render(request, 'posts/dashboard.html', context)
