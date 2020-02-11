@@ -8,8 +8,6 @@
 CD into ISB directory & run the following commands: 
 - 'docker-compose build' builds the image for the Django app's container, and download all required python packages.
     * If new packages are added, they need to be added into requirements.txt and execute the command again.
-- 'docker-compose run web python manage.py migrate' migrates the application into postgres
-    * Should only be run once when first cloning the repo.
 - 'docker-compose up' would create container instances for postgres database and the django app and run on port 5432 and port 8000 of localhost, respectively
     * Changes in codes are listened to and applied by Django instantly.
 
