@@ -1,5 +1,6 @@
 #cached folder
-./ISB/.idea/
-./__pycache__/
-./ISB/__pycache__/
-./ISB/posts/__pycache__/
+/ISB/.idea/
+/__pycache__/
+/ISB/__pycache__/
+/ISB/ISB/__pycache__/
+/ISB/posts/__pycache__/

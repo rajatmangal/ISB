@@ -1,10 +1,20 @@
 version: '3'
 services:
   db:
-    image: nouchka/sqlite3
+    image: postgres:latest
+    hostname: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"  
   web:
+    image: isb-image
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: 
+      python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
