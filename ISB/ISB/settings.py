@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'ISB.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ISB',
+        'NAME': 'postgres',
         'USER': 'postgres',
         'password': 'postgres',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432'
     }
 }
