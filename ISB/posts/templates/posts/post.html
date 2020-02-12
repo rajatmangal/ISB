@@ -1,0 +1,15 @@
+{% extends 'posts/main.html' %}
+{% load widget_tweaks %}
+{% block content %}
+    {{ post.text }}
+    {{ post.description }}
+    {% for comment in comments %}
+        {{ comment }}
+    {% endfor %}
+
+     <form method="POST" action="{% url 'post' id%}" class="container">
+     {% csrf_token %}
+        {{ form }}
+     <button type="submit" class="btn btn-primary">Submit</button>
+     </form>
+{% endblock %}

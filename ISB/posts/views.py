@@ -4,7 +4,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 
-from .forms import CreateUserForm, PostForm
+from .models import *
+from .forms import CreateUserForm, PostForm, CommentForm
 from .decorators import unauthenticated_user
 
 
@@ -60,7 +61,6 @@ def createPost(request):
     form = PostForm()
     if request.method == 'POST':
         form = PostForm(request.POST)
-        print(form)
         if form.is_valid():
             f = form.save(commit=False)
             f.userid = request.user
@@ -68,3 +68,22 @@ def createPost(request):
             return redirect('home')
     context = {'form': form}
     return render(request, 'posts/newPost.html', context)
+
+
+@login_required(login_url='login')
+def viewPost(request, id):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            f = form.save(commit=False)
+            f.userid = request.user
+            f.postid = Post.objects.get(id = id)
+            f.save()
+    form = CommentForm();
+    post = Post.objects.get(id=id)
+    # url = 'createComment' + str(id)
+    comments = PostComment.objects.filter(postid=post)
+   # print(len(comments))
+    context = { 'post': post, 'form':form, 'id':id, 'comments':comments};
+    return render(request, 'posts/post.html',context)
+

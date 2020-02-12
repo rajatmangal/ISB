@@ -12,14 +12,14 @@ class Post(models.Model):
     userid = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return self.text
+        return self.text + str(self.id)
 
 
 class PostComment(models.Model):
     text = models.CharField(max_length=2000, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
-    userid = models.CharField(max_length=100, null=True)
+    userid = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     postid = models.ForeignKey(Post, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return self.text + "      " + self.userid
+        return self.text + str(self.id)
