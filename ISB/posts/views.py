@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 
-from .forms import CreateUserForm
+from .forms import CreateUserForm, PostForm
 from .decorators import unauthenticated_user
 
 
@@ -53,3 +53,18 @@ def home(request):
 def userPage(request):
     context={}
     return render(request, 'posts/dashboard.html', context)
+
+
+@login_required(login_url='login')
+def createPost(request):
+    form = PostForm()
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        print(form)
+        if form.is_valid():
+            f = form.save(commit=False)
+            f.userid = request.user
+            f.save();
+            return redirect('home')
+    context = {'form': form}
+    return render(request, 'posts/newPost.html', context)
