@@ -46,13 +46,17 @@ def logoutUser(request):
 
 @login_required(login_url='login')
 def home(request):
-    context = {}
+    posts = Post.objects.all()
+    context = {'posts': posts}
+    print(posts)
     return render(request, 'posts/dashboard.html', context)
 
 
 @login_required(login_url='login')
 def userPage(request):
-    context={}
+    posts = Post.objects.all()
+    context={'posts':posts}
+    print(posts)
     return render(request, 'posts/dashboard.html', context)
 
 
