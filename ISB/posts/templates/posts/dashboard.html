@@ -1,4 +1,9 @@
 {% extends 'posts/main.html' %}
 {% block content %}
     <h1>Welcome to International Student Board</h1>
+    {% for post in posts %}
+        <h2><a href="{% url 'post' post.id %}">{{ post }}</a></h2>
+        <br>
+    {% endfor %}
+    <h2>Hi</h2>
 {% endblock %}
