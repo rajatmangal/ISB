@@ -33,7 +33,7 @@ spec:
                 key: password
 
           - name: POSTGRES_HOST
-            value: isb-db
+            value: db
         volumeMounts:
           - name: postgres-volume-mount
             mountPath: /var/lib/busybox

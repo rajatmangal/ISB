@@ -47,7 +47,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: isb-db
+  name: db
 spec:
   selector:
     app: postgres-container
