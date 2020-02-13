@@ -14,9 +14,15 @@ spec:
       labels:
         app: isb
     spec:
+      initContainers:
+        - name: check-db-ready
+          image: 474acr.azurecr.io/postgres:v1
+          command: ['sh', '-c', 
+            'until pg_isready -h db -p 5432; 
+            do echo waiting for database; sleep 2; done;']
       containers:
       - name: isb
-        image: 474acr.azurecr.io/isb-image:v3
+        image: 474acr.azurecr.io/isb-image:v5
         ports:
         - containerPort: 8000
         env:
