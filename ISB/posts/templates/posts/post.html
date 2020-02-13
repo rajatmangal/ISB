@@ -1,15 +1,50 @@
 {% extends 'posts/main.html' %}
 {% load widget_tweaks %}
+{% load static %}
 {% block content %}
-    {{ post.text }}
-    {{ post.description }}
-    {% for comment in comments %}
-        {{ comment }}
-    {% endfor %}
-
-     <form method="POST" action="{% url 'post' id%}" class="container">
-     {% csrf_token %}
-        {{ form }}
-     <button type="submit" class="btn btn-primary">Submit</button>
-     </form>
+       <div class="container">
+            <div class="card" id="card-Page">
+                <div class="card-body">
+                    <div class="row">
+{#                        <div class="col-2">#}
+{#                            <img id="thread-img" src="{% static '/images/avatar.png' %}" />#}
+{#                        </div>#}
+                        <div class="col-12">
+                            <div class="row">
+                                <h3 class="card-title" id="post" >{{ post.text }}</h3>
+                            </div>
+                            <div class="row">
+                                <p id="dateCreated">Created By: {{ post.userid.username }} at {{ post.date_created }}</p>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                 <p id="description" class="card-text">{{ post.description }}</p>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <form method="POST" action="{% url 'post' id%}" class="container">
+                                    {% csrf_token %}
+                                    <div class="input-group">
+                                        {{ form.text|add_class:"form-control"|attr:"placeholder: Write your Comment here" }}
+                                      <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="submit">Add Comment</button>
+                                      </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="comments">
+                                {% for comment in comments %}
+                                <div class="row card" id="commentCard">
+                                    <div class="card-body">
+                                        <p id="commentUser" class="card-text">{{comment.userid.username}}</p>
+                                        <h5 id="comment" class="card-title">{{ comment.text }}</h5>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 {% endblock %}

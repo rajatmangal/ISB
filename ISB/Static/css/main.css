@@ -18,6 +18,10 @@
     border-radius: 20px;
 }
 
+#navbar {
+    margin: 0 2%;
+}
+
 #thread-img {
   border-radius: 50px;
   height: 99px;
@@ -38,3 +42,68 @@
 #homePageText {
     text-align: center;
 }
+
+#post {
+    display: block;
+    margin: 0 auto;
+}
+
+#dateCreated {
+   margin: 0 0 0 auto;
+    font-size: x-small;
+}
+
+#description {
+    margin: 0 auto;
+}
+
+#card-Page {
+    border-radius: 20px;
+    width: 90%;
+    margin: 10px;
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,.1);
+}
+
+#comments {
+    margin-top: 3%;
+}
+
+#commentUser {
+    font-size: xx-small;
+}
+
+#comment {
+    font-size: medium;
+}
+
+#commentCard{
+    margin-bottom: 1%;
+}
+
+#search-bar {
+  border: none;
+  width: 450px;
+}
+
+.container-lg {
+    /*width: 100%;*/
+    /*margin: 0 0 0 10%;*/
+}
+
+
+#new-discussion {
+  width: 200px;
+  box-shadow: 2px 2px 2px 2px rgba(0,0,0,.1);
+}
+
+#followinOptions {
+  margin: 30px 0;
+}
+
+#followOption {
+  color: rgb(104,210,245);
+  background-color: white;
+  border: none;
+  display: block;
+}
+
