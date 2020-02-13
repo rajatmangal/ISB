@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'posts',
 
     'widget_tweaks',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

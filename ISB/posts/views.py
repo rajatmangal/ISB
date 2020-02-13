@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import CreateUserForm, PostForm, CommentForm
 from .decorators import unauthenticated_user
+from .filter import PostFilter
 
 
 @unauthenticated_user
@@ -47,8 +48,10 @@ def logoutUser(request):
 @login_required(login_url='login')
 def home(request):
     posts = Post.objects.all()
-    context = {'posts': posts}
+    myFilter = PostFilter(request.GET, queryset=posts)
+    posts = myFilter.qs
     print(posts)
+    context = {'posts': posts, 'myFilter':myFilter}
     return render(request, 'posts/dashboard.html', context)
 
 
