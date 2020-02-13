@@ -1,4 +1,66 @@
 {% extends 'posts/main.html' %}
+{% load static %}
 {% block content %}
-    <h1>Welcome to International Student Board</h1>
+    <h1 id="homePageText">Welcome to International Student Board</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-9">
+                <div>
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="filter" type="button">Dropdown </button>
+                        <div role="menu" class="dropdown-menu">
+                            <a role="presentation" class="dropdown-item" href="#">First Item</a>
+                            <a role="presentation" class="dropdown-item" href="#">Second Item</a>
+                            <a role="presentation" class="dropdown-item" href="#">Third Item</a>
+                        </div>
+                    </div>
+                </div>
+                {% for post in posts %}
+                    <br>
+                    <div class="card" id="card-homePage">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img id="thread-img" src="{% static '/images/avatar.png' %}" />
+                                </div>
+                                <div class="col-8">
+                                    <h5 class="card-title">{{ post.text }}</h5>
+                                    <p class="card-text">{{ post.description }}</p>
+                                    <a href="{% url 'post' post.id %}" class="btn btn-primary">Button</a>
+                                </div>
+                                <div class="col-2">
+                                    <div id="likeComments">
+                                        <i class="far fa-thumbs-up"></i>
+                                        <span id="likeCommentsCount">5</span>
+                                    </div>
+                                    <div id="likeComments">
+                                        <i class="fa fa-comment"></i>
+                                        <span id="likeCommentsCount">15</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-3">
+                <button class="btn btn-primary" id="new-discussion" type="button" style="background-color: rgb(63,148,239);">Start New Discussion</button>
+                <div id="followinOptions">
+                    <button class="btn btn-primary" id="followOption" type="button">
+                        <i class="fa fa-comments" style="height: 24px;font-size: 20px;"></i> 
+                        All Discussions
+                    </button>
+                    <button class="btn btn-primary" id="followOption" type="button">
+                        <i class="fas fa-star" style="font-size: 18px;"></i> 
+                        Following
+                    </button>
+                </div>
+                <hr/>
+                <button id="followOption" class="btn btn-primary" id="tags" type="button">
+                    <i class="far fa-bookmark" style="font-size: 18px;"></i> 
+                    Documents
+                </button>
+            </div>
+        </div>
+    </div>
 {% endblock %}

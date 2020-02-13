@@ -1,0 +1,30 @@
+{% extends 'posts/main.html' %}
+{% load widget_tweaks %}
+{% block content %}
+    <form method="POST" action="" class="container">
+        <br><br>
+        {% csrf_token %}
+<!--        {{ form.text }}-->
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ form.text.label }}</label>
+            {{ form.text|add_class:'form-control' }}
+            {% for error in field.errors %}
+              <span class="help-block">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ form.description.label }}</label>
+            {{ form.description|add_class:'form-control' }}
+            {% for error in field.errors %}
+              <span class="help-block">{{ error }}</span>
+            {% endfor %}
+          </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {{ form.errors }}
+    <br><br>
+{% endblock %}
