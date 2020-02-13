@@ -1,4 +1,5 @@
 {% extends 'posts/main.html' %}
+{% load widget_tweaks %}
 {% load static %}
 {% block content %}
     <h1 id="homePageText">Welcome to International Student Board</h1>
@@ -7,13 +8,23 @@
             <div class="col-9">
                 <div>
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="filter" type="button">Dropdown </button>
+                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="filter" type="button">Search By:</button>
                         <div role="menu" class="dropdown-menu">
-                            <a role="presentation" class="dropdown-item" href="#">First Item</a>
-                            <a role="presentation" class="dropdown-item" href="#">Second Item</a>
-                            <a role="presentation" class="dropdown-item" href="#">Third Item</a>
+                            <span role="presentation" id = "topicName" class="dropdown-item" href="#">Topic Name</span>
+                            <span role="presentation" id = "topicDescription" class="dropdown-item" href="#">Topic Description</span>
                         </div>
                     </div>
+                </div>
+                <br>
+                <div id="search">
+                    <form method="get" id="descriptionForm">
+                        {{ myFilter.form.description |add_class:"form-control mx-sm-3"|attr:"placeholder: Search By Topic Description"|attr:"id:searchBarDescription" }}
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </form>
+                    <form method="get" id ="textForm">
+                        {{ myFilter.form.text |add_class:"form-control mx-sm-3"|attr:"placeholder: Search By Topic Name"|attr:"id:searchBarText" }}
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </form>
                 </div>
                 {% for post in posts %}
                     <br>

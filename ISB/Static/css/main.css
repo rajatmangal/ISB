@@ -107,3 +107,28 @@
   display: block;
 }
 
+#searchBarDescription {
+    display: inline-block;
+    width: 20rem;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,.1);
+
+}
+
+#searchBarText {
+    display: inline-block;
+    width: 20rem;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,.1);
+}
+
+ #search{
+     text-align: center;
+     margin: 0 auto;
+ }
+
+ #descriptionForm {
+     display: none;
+ }
