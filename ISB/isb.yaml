@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: isb
+  labels: 
+    app: isb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+        app: isb
+  template:
+    metadata:
+      labels:
+        app: isb
+    spec:
+      containers:
+      - name: isb
+        image: 474acr.azurecr.io/isb-image:v3
+        ports:
+        - containerPort: 8000
+        env:
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: postgres-credentials
+                key: user
+
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-credentials
+                key: password
+
+          - name: POSTGRES_HOST
+            value: isb-db
+        volumeMounts:
+          - name: postgres-volume-mount
+            mountPath: /var/lib/busybox
+      volumes:
+        - name: postgres-volume-mount
+          persistentVolumeClaim:
+            claimName: postgres-pvc      
+---
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: isb
+spec:
+  selector:
+    app: isb
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
+  type: LoadBalancer
