@@ -38,7 +38,7 @@ Note: These steps are quite manual right now, and I'm trying to figure out a mor
 - 'az acr list --resource-group cmpt-474 --query "[].{acrLoginServer:loginServer}" --output table' retrieves acrLoginServer name
     * Copy the output somewhere conveniently - you need to use this acrLoginServer many times.
 
-(For these steps, repeat for postgres image - however should only need to do once)
+   (For these following steps, repeat for postgres image - however should only need to do once)
 - 'docker tag isb-image <acrLoginServer>/isb-image:v1' to tag the container image
     * v1 stands for version 1. If this is not the first version of the image on ACR, name them accordingly
 - 'docker images' to display the images again, now with the newly tagged images we just created.
