@@ -13,7 +13,7 @@ class CreateUserForm(UserCreationForm):
 class PostForm(ModelForm):
     class Meta:
         model = Post
-        fields = ['description','text']
+        fields = ['description','text','tag']
 
 
 class CommentForm(ModelForm):
