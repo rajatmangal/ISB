@@ -51,7 +51,7 @@ def home(request):
     myFilter = PostFilter(request.GET, queryset=posts)
     posts = myFilter.qs
     print(posts)
-    context = {'posts': posts, 'myFilter':myFilter}
+    context = {'posts': posts, 'myFilter':myFilter, 'length' : len(posts)}
     return render(request, 'posts/dashboard.html', context)
 
 
@@ -93,4 +93,15 @@ def viewPost(request, id):
    # print(len(comments))
     context = { 'post': post, 'form':form, 'id':id, 'comments':comments};
     return render(request, 'posts/post.html',context)
+
+
+@login_required(login_url='login')
+def viewTags(request, tag):
+    posts = Post.objects.filter(tag=tag)
+    print(posts)
+    myFilter = PostFilter(request.GET, queryset=posts)
+    posts = myFilter.qs
+    print(posts)
+    context = {'posts': posts, 'myFilter': myFilter, 'length' : len(posts)}
+    return render(request, 'posts/dashboard.html', context)
 

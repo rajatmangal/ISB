@@ -10,4 +10,5 @@ urlpatterns = [
     path('user/', views.userPage, name="user-page"),
     path('create_post/', views.createPost, name="createpost"),
     path('post/<str:id>/', views.viewPost, name="post"),
+    path('posts/<str:tag>/', views.viewTags, name="posts"),
 ]
