@@ -6,7 +6,7 @@ import psycopg2
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 
-rds_host = 'isb-db.cluster-cdl4akxmgbw3.us-east-1.rds.amazonaws.com'
+rds_host = 'isb-db.cluster-cdl4akxmgbw3.us-east-1.rds.amazonaws.comcd isb   '
 db_name = 'postgres'
 user_name = 'postgres'
 password = 'password'
